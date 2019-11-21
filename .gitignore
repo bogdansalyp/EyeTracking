@@ -1,0 +1,9 @@
+# Project files
+venv
+.ipynb_checkpoints
+
+# OS X files
+.DS_Store
+
+# IDE files
+.vscode
