@@ -25,8 +25,7 @@ except OSError:
 
 # Start timer with capture
 cnt = 1
-zeroTime = time.time()
-firstTime = time.time()
+lastTime = time.time()
 spreadTime = 0 # x + 1 = Time between frame capture
 cap = cv2.VideoCapture(0)
 cap.set(3,320)
@@ -117,7 +116,8 @@ while True:
         break
     
     # Lets take one frame every second and write it to our directory
-    if firstTime - zeroTime <= spreadTime:
+    if time.time() - lastTime <= spreadTime:
+        print(time.time())
         firstTime = time.time()
         
     else:
@@ -128,7 +128,6 @@ while True:
         pth = str(cnt) + " {" + str(xPos) + ":" + str(yPos) + "}" + ".jpg"
         faceImage = cv2.flip(cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA), 1)
         cv2.imwrite(pth, faceImage)
-        zeroTime = firstTime
 
 
 # When everything done, release the capture
